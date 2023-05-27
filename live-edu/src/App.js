@@ -16,6 +16,7 @@ class App extends Component {
 
             <Routes>
               <Route index element={<Home />} />
+              <Route path='/liveedu' element={<Home />} />
 
             </Routes>
           </div>
