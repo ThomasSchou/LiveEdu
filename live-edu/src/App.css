@@ -32,7 +32,59 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Global */
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Header */
+
+.header {
+  backdrop-filter: blur(3px);
+  height: 51px;
+  transition: 0.3s ease-out;
+  background-color: rgb(8, 6, 14);
+  display: grid;
+  grid-template-columns: min-content max-content min-content;
+  grid-template-rows: 51px;
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-between;
+}
+
+.logoContainer {}
+
+.linkContainer {
+  display: flex;
+  gap: 30px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+.headerLinks {
+  list-style-type: none;
+  font-size: 1.1rem;
+  color: rgb(255, 255, 255) !important;
+}
+.headerLinks.active {
+  font-weight: bold;
+}
+
+/* Home */
+
+.container {
+  display: flex;
+}
+
+.chat {
+  width: 300px;
 }

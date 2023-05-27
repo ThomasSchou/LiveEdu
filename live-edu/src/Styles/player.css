@@ -1,0 +1,46 @@
+.stream-container {
+    width:60%;
+    position: relative;
+}
+
+
+#stream-player {
+    width: 100%;
+    transition: 150ms;
+}
+
+.stream-container:hover #stream-player { 
+    filter: grayscale(0.4);
+}
+
+
+.stream-Controls {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    z-index: 100;
+    opacity: 0;
+    transition: 200ms;
+}
+
+.stream-container:hover .stream-Controls { 
+    opacity: 1;
+}
+
+
+.stream-controls-left {
+    float: left
+}
+
+.stream-controls-btn {
+    height: 25px;
+    width: 25px;
+    opacity: 0.75;
+    transition: 200ms;
+    fill:white;
+    margin: 10px 10px;
+}
+
+.stream-controls-btn:hover {
+    opacity: 1;
+}
