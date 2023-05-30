@@ -101,11 +101,11 @@ const StreamPlayer = () => {
               </div>
             )}
           </div>
-          <div className="stream-mute-btn" onClick={handleMute}>
+          <div className="stream-volume-controls" onClick={handleMute}>
             {muted ? (
-                <VolumeOff />
+                <VolumeOff className="stream-mute-btn"/>
             ) : (
-                <VolumeHigh />
+                <VolumeHigh className="stream-mute-btn"/>
             )}
             <input className="stream-volume-slider" type="range" min={0} max={1} step={0.01} value={volume}></input>
           </div>

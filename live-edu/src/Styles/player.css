@@ -46,6 +46,17 @@
     opacity: 1;
 }
 
+.stream-volume-controls {
+    opacity: 0.75;
+    display: flex;
+    align-items: center;
+}
+
+.stream-volume-controls:hover {
+    opacity: 1;
+}
+
+
 .stream-mute-btn {
     height: 25px;
     width: 25px;
