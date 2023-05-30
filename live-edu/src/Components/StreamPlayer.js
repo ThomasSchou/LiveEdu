@@ -77,6 +77,7 @@ const StreamPlayer = () => {
   };
 
   const handleMute = () => {
+    console.log("Muting")
     player.current.setMuted()
     setMuted(true)
   }
@@ -107,7 +108,7 @@ const StreamPlayer = () => {
             ) : (
                 <VolumeHigh className="stream-mute-btn"/>
             )}
-            <input className="stream-volume-slider" type="range" min={0} max={1} step={0.01} value={volume}></input>
+            <input className="stream-volume-slider" type="range" min={0} max={1} step={0.01} value={0.5}></input>
           </div>
         </div>
       </div>}

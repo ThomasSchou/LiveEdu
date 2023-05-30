@@ -69,3 +69,16 @@
 .stream-mute-btn:hover {
     opacity: 1;
 }
+
+.stream-volume-slider {
+    width:0px;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: 150ms ease-out;
+}
+
+.stream-volume-slider:hover,
+.stream-volume-slider:focus-within {
+    width:auto;
+    transform: scaleX(1);
+}
