@@ -81,7 +81,7 @@ const StreamPlayer = () => {
 
   const handleMute = () => {
     console.log("Muting")
-    player.current.setMuted()
+    player.current.setMuted(!player.current.isMuted())
     setMuted(true)
   }
 
