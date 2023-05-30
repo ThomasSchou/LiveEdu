@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/LiveEdu/static/css/main.dd086e98.css",
-    "main.js": "/LiveEdu/static/js/main.f4035885.js",
+    "main.js": "/LiveEdu/static/js/main.879af325.js",
     "static/js/787.69285f7a.chunk.js": "/LiveEdu/static/js/787.69285f7a.chunk.js",
     "index.html": "/LiveEdu/index.html",
     "static/media/volume_high.svg": "/LiveEdu/static/media/volume_high.d690286cec45dec4c90380a46fddca7a.svg",
@@ -11,11 +11,11 @@
     "static/media/close.svg": "/LiveEdu/static/media/close.cf3778b3e5e52550d83530a7c5087c1c.svg",
     "static/media/play.svg": "/LiveEdu/static/media/play.55113c0fd92668d464bdaa4889a7069b.svg",
     "main.dd086e98.css.map": "/LiveEdu/static/css/main.dd086e98.css.map",
-    "main.f4035885.js.map": "/LiveEdu/static/js/main.f4035885.js.map",
+    "main.879af325.js.map": "/LiveEdu/static/js/main.879af325.js.map",
     "787.69285f7a.chunk.js.map": "/LiveEdu/static/js/787.69285f7a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dd086e98.css",
-    "static/js/main.f4035885.js"
+    "static/js/main.879af325.js"
   ]
 }
