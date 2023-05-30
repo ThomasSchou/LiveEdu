@@ -14,7 +14,7 @@ const StreamPlayer = () => {
 
   const [loading, setLoading] = useState(true)
   const [paused, setPaused] = useState(true)
-  const [volume, setVolume] = useState(true)
+  const [volume, setVolume] = useState(0.5)
   const [muted, setMuted] = useState(true)
 
   useEffect(() => {
@@ -101,12 +101,13 @@ const StreamPlayer = () => {
               </div>
             )}
           </div>
-          <div className="stream-mute-btn" onClick={handleMute()}>
+          <div className="stream-mute-btn" onClick={handleMute}>
             {muted ? (
                 <VolumeOff />
             ) : (
                 <VolumeHigh />
             )}
+            <input className="stream-volume-slider" type="slider" min={0} max={1} step={any} value={volume}></input>
           </div>
         </div>
       </div>}
