@@ -71,14 +71,15 @@
 }
 
 .stream-volume-slider {
-    width:0px;
+    
     transform-origin: left;
     transform: scaleX(0);
+    width:0px;
     transition: 150ms ease-out;
 }
 
-.stream-mute-btn:hover .stream-volume-slider,
-.stream-mute-btn:focus-within .stream-volume-slider {
+.stream-volume-controls:hover .stream-volume-slider,
+.stream-volume-controls:focus-within .stream-volume-slider {
     width:100px;
     transform: scaleX(1);
 }
