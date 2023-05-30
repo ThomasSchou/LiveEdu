@@ -76,6 +76,11 @@ const StreamPlayer = () => {
     setPaused(true)
   };
 
+  const handleMute = () => {
+    player.current.setMuted()
+    setMuted(true)
+  }
+
   if (!IVSPlayer.isPlayerSupported || !player) {
     return "null";
   }
@@ -96,7 +101,7 @@ const StreamPlayer = () => {
               </div>
             )}
           </div>
-          <div className="stream-mute-btn">
+          <div className="stream-mute-btn" onClick={handleMute()}>
             {muted ? (
                 <VolumeOff />
             ) : (
