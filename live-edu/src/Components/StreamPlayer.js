@@ -1,14 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Play, Pause, VolumeOff, VolumeHigh } from '../Assets'
 
-
-
-import BasePlayer from "./BasePlayer";
-import StreamControls from "./StreamControls";
-import { CONTROLS, POSITION } from "../Config/Config.js";
-
 import "../Styles/player.css";
-import Stream from "./Stream";
+
 
 
 
