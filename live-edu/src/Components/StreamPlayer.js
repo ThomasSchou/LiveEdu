@@ -77,10 +77,9 @@ const StreamPlayer = () => {
   };
 
   const handlePause = () => {
-    console.log(player.current.getBufferDuration())
-    console.log("huh1")
-    player.current.setVolume(1.0)
+    console.log("Pausing")
     player.current.pause();
+    console.log(player.current.isPaused())
   };
 
   if (!IVSPlayer.isPlayerSupported || !player) {
