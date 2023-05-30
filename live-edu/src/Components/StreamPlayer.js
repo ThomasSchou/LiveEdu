@@ -91,8 +91,8 @@ const StreamPlayer = () => {
     if(player.current.isMuted()) {
       player.current.setMuted(false)
     }
-    console.log(typeof e.target.value)
-    player.current.setVolume(e.target.value)
+    console.log(typeof parseFloat(e.target.value))
+    player.current.setVolume(parseFloat(e.target.value))
     console.log(player.current.getVolume())
   }
 
