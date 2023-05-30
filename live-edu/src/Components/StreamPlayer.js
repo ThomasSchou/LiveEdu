@@ -86,6 +86,14 @@ const StreamPlayer = () => {
     setMuted(true)
   }
 
+  const handleVolumeChange = (e) => {
+    if(player.current.isMuted()) {
+      player.current.setMuted(false)
+    }
+    player.current.setVolume(e.value)
+    console.log(player.current.getVolume())
+  }
+
   if (!IVSPlayer.isPlayerSupported || !player) {
     return "null";
   }
@@ -112,7 +120,7 @@ const StreamPlayer = () => {
             ) : (
               <VolumeHigh onClick={handleMute} className="stream-mute-btn" />
             )}
-            <input className="stream-volume-slider" type="range" min={0} max={1} step={0.01} defaultValue="0.5"></input>
+            <input className="stream-volume-slider" type="range" min={0} max={1} step={0.01} defaultValue="0.5" onChange={handleVolumeChange}></input>
           </div>
         </div>
       </div>}
