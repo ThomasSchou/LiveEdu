@@ -107,7 +107,7 @@ const StreamPlayer = () => {
             ) : (
                 <VolumeHigh />
             )}
-            <input className="stream-volume-slider" type="slider" min={0} max={1} step={any} value={volume}></input>
+            <input className="stream-volume-slider" type="slider" min={0} max={1} step={0.01} value={volume}></input>
           </div>
         </div>
       </div>}
