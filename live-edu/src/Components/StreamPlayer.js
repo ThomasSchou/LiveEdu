@@ -52,6 +52,7 @@ const StreamPlayer = () => {
     player.current.addEventListener(ENDED, onStateChange);
     player.current.addEventListener(ERROR, onError);
 
+    player.setVolume(volume)
     player.current.play()
 
     console.log(player)
@@ -90,7 +91,7 @@ const StreamPlayer = () => {
     if(player.current.isMuted()) {
       player.current.setMuted(false)
     }
-    player.current.setVolume(e.value)
+    player.current.setVolume(e.target.value)
     console.log(player.current.getVolume())
   }
 
@@ -120,7 +121,7 @@ const StreamPlayer = () => {
             ) : (
               <VolumeHigh onClick={handleMute} className="stream-mute-btn" />
             )}
-            <input className="stream-volume-slider" type="range" min={0} max={1} step={0.01} defaultValue="0.5" onChange={handleVolumeChange}></input>
+            <input className="stream-volume-slider" type="range" min={0} max={1} step={0.01} defaultValue={volume} onChange={handleVolumeChange}></input>
           </div>
         </div>
       </div>}
