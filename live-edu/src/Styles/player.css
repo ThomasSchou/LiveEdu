@@ -36,7 +36,7 @@
 .stream-controls-btn {
     height: 20px;
     width: 20px;
-    opacity: 0.75;
+    opacity: 0.85;
     transition: 200ms;
     fill:white;
     margin: 10px 10px;
@@ -47,7 +47,7 @@
 }
 
 .stream-volume-controls {
-    opacity: 0.75;
+    opacity: 0.85;
     display: flex;
     align-items: center;
 }
@@ -60,7 +60,6 @@
 .stream-mute-btn {
     height: 25px;
     width: 25px;
-    opacity: 0.75;
     transition: 200ms;
     fill:white;
     margin: 10px 10px;
