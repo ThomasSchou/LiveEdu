@@ -90,6 +90,7 @@ const StreamPlayer = () => {
   const handleVolumeChange = (e) => {
     if(player.current.isMuted()) {
       player.current.setMuted(false)
+      setMuted(false)
       console.log("forcing unmute")
     }
 
