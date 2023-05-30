@@ -83,13 +83,15 @@ const StreamPlayer = () => {
   const handleMute = () => {
     console.log("Muting")
     console.log(player.current.isMuted())
-    player.current.setMuted(!player.current.isMuted())
-    setMuted(true)
+    const currentlMuteState = !player.current.isMuted()
+    player.current.setMuted(currentlMuteState)
+    setMuted(currentlMuteState)
   }
 
   const handleVolumeChange = (e) => {
     if(player.current.isMuted()) {
       player.current.setMuted(false)
+      console.log("forcing unmute")
     }
     console.log(typeof parseFloat(e.target.value))
     player.current.setVolume(parseFloat(e.target.value))
@@ -117,7 +119,7 @@ const StreamPlayer = () => {
             )}
           </div>
           <div className="stream-volume-controls">
-            {(muted === true || volume === 0) ? (
+            {muted ? (
               <VolumeOff onClick={handleMute} className="stream-mute-btn" />
             ) : (
               <VolumeHigh onClick={handleMute} className="stream-mute-btn" />
