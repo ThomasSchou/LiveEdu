@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Play, Pause } from '../Assets'
+import { Play, Pause, VolumeOff, VolumeHigh } from '../Assets'
 
 
 
@@ -20,6 +20,8 @@ const StreamPlayer = () => {
 
   const [loading, setLoading] = useState(true)
   const [paused, setPaused] = useState(true)
+  const [volume, setVolume] = useState(true)
+  const [muted, setMuted] = useState(true)
 
   useEffect(() => {
     const { ENDED, PLAYING, READY } = IVSPlayer.PlayerState;
@@ -100,7 +102,16 @@ const StreamPlayer = () => {
               </div>
             )}
           </div>
-          <div className="stream-volume"></div>
+          <div className="stream-mute-btn">
+            {muted ? (
+                <VolumeOff />
+            ) : (
+                <VolumeHigh />
+            )}
+          </div>
+          <div className="stream-volume">
+
+          </div>
         </div>
       </div>}
       <video id="stream-player" className="vjs-default-skin" ref={videoEl}></video>
