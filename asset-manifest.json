@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/LiveEdu/static/css/main.209bbf9a.css",
-    "main.js": "/LiveEdu/static/js/main.6e3869e1.js",
+    "main.css": "/LiveEdu/static/css/main.7b191fdb.css",
+    "main.js": "/LiveEdu/static/js/main.724fdbc1.js",
     "static/js/787.69285f7a.chunk.js": "/LiveEdu/static/js/787.69285f7a.chunk.js",
     "index.html": "/LiveEdu/index.html",
     "static/media/volume_high.svg": "/LiveEdu/static/media/volume_high.d690286cec45dec4c90380a46fddca7a.svg",
@@ -10,12 +10,12 @@
     "static/media/pause.svg": "/LiveEdu/static/media/pause.72e3c540cfe593a6022a9bdb78068f60.svg",
     "static/media/close.svg": "/LiveEdu/static/media/close.cf3778b3e5e52550d83530a7c5087c1c.svg",
     "static/media/play.svg": "/LiveEdu/static/media/play.55113c0fd92668d464bdaa4889a7069b.svg",
-    "main.209bbf9a.css.map": "/LiveEdu/static/css/main.209bbf9a.css.map",
-    "main.6e3869e1.js.map": "/LiveEdu/static/js/main.6e3869e1.js.map",
+    "main.7b191fdb.css.map": "/LiveEdu/static/css/main.7b191fdb.css.map",
+    "main.724fdbc1.js.map": "/LiveEdu/static/js/main.724fdbc1.js.map",
     "787.69285f7a.chunk.js.map": "/LiveEdu/static/js/787.69285f7a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.209bbf9a.css",
-    "static/js/main.6e3869e1.js"
+    "static/css/main.7b191fdb.css",
+    "static/js/main.724fdbc1.js"
   ]
 }
