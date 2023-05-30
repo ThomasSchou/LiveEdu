@@ -45,7 +45,7 @@
     opacity: 1;
 }
 
-.stream-volume-btn {
+.stream-mute-btn {
     height: 25px;
     width: 25px;
     opacity: 0.75;
@@ -54,6 +54,6 @@
     margin: 10px 10px;
 }
 
-.stream-controls-btn:hover {
+.stream-mute-btn:hover {
     opacity: 1;
 }
