@@ -121,7 +121,7 @@ const StreamPlayer = () => {
             )}
           </div>
           <div className="stream-volume-controls">
-            {muted ? (
+            {(muted || volume === 0) ? (
               <VolumeOff onClick={handleMute} className="stream-mute-btn" />
             ) : (
               <VolumeHigh onClick={handleMute} className="stream-mute-btn" />
