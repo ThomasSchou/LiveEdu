@@ -109,9 +109,6 @@ const StreamPlayer = () => {
                 <VolumeHigh />
             )}
           </div>
-          <div className="stream-volume">
-
-          </div>
         </div>
       </div>}
       <video id="stream-player" className="vjs-default-skin" ref={videoEl}></video>

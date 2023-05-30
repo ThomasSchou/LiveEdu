@@ -44,3 +44,16 @@
 .stream-controls-btn:hover {
     opacity: 1;
 }
+
+.stream-volume-btn {
+    height: 25px;
+    width: 25px;
+    opacity: 0.75;
+    transition: 200ms;
+    fill:white;
+    margin: 10px 10px;
+}
+
+.stream-controls-btn:hover {
+    opacity: 1;
+}
