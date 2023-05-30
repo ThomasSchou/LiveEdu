@@ -52,7 +52,7 @@ const StreamPlayer = () => {
     player.current.addEventListener(ENDED, onStateChange);
     player.current.addEventListener(ERROR, onError);
 
-    player.setVolume(volume)
+    player.current.setVolume(volume)
     player.current.play()
 
     console.log(player)
