@@ -79,6 +79,6 @@
 
 .stream-mute-btn:hover .stream-volume-slider,
 .stream-mute-btn:focus-within .stream-volume-slider {
-    width:auto;
+    width:100px;
     transform: scaleX(1);
 }
