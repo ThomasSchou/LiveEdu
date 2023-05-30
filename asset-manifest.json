@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/LiveEdu/static/css/main.6aa5476a.css",
-    "main.js": "/LiveEdu/static/js/main.2cb6b0b6.js",
+    "main.css": "/LiveEdu/static/css/main.c5590939.css",
+    "main.js": "/LiveEdu/static/js/main.a4c362eb.js",
     "static/js/787.69285f7a.chunk.js": "/LiveEdu/static/js/787.69285f7a.chunk.js",
     "index.html": "/LiveEdu/index.html",
-    "static/media/volume_off.svg": "/LiveEdu/static/media/volume_off.594613024554e35e22d7914b7212f9ab.svg",
+    "static/media/volume_high.svg": "/LiveEdu/static/media/volume_high.d690286cec45dec4c90380a46fddca7a.svg",
+    "static/media/volume_off.svg": "/LiveEdu/static/media/volume_off.8af64b739f96b6a32178070c6777c0b2.svg",
     "static/media/aspect_ratio.svg": "/LiveEdu/static/media/aspect_ratio.f271a4b413221be44adeda901660e34b.svg",
-    "static/media/volume_up.svg": "/LiveEdu/static/media/volume_up.b7a62156112dc174137e54a67c03e8fb.svg",
     "static/media/pause.svg": "/LiveEdu/static/media/pause.72e3c540cfe593a6022a9bdb78068f60.svg",
     "static/media/close.svg": "/LiveEdu/static/media/close.cf3778b3e5e52550d83530a7c5087c1c.svg",
     "static/media/play.svg": "/LiveEdu/static/media/play.55113c0fd92668d464bdaa4889a7069b.svg",
-    "main.6aa5476a.css.map": "/LiveEdu/static/css/main.6aa5476a.css.map",
-    "main.2cb6b0b6.js.map": "/LiveEdu/static/js/main.2cb6b0b6.js.map",
+    "main.c5590939.css.map": "/LiveEdu/static/css/main.c5590939.css.map",
+    "main.a4c362eb.js.map": "/LiveEdu/static/js/main.a4c362eb.js.map",
     "787.69285f7a.chunk.js.map": "/LiveEdu/static/js/787.69285f7a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6aa5476a.css",
-    "static/js/main.2cb6b0b6.js"
+    "static/css/main.c5590939.css",
+    "static/js/main.a4c362eb.js"
   ]
 }
