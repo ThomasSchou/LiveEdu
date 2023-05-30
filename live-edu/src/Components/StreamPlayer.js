@@ -38,7 +38,6 @@ const StreamPlayer = () => {
 
       console.log(`Player State - ${playerState}`);
       setLoading(playerState !== PLAYING);
-      setPaused(player.isPaused());
     };
 
     const onError = (err) => {
@@ -70,15 +69,15 @@ const StreamPlayer = () => {
 
 
   const handlePlay = () => {
-    console.log("huh")
-    player.current.getBufferDuration()
+    console.log("Playing")
     player.current.play();
+    setPaused(false)
   };
 
   const handlePause = () => {
     console.log("Pausing")
     player.current.pause();
-    console.log(player.current.isPaused())
+    setPaused(true)
   };
 
   if (!IVSPlayer.isPlayerSupported || !player) {
