@@ -77,8 +77,8 @@
     transition: 150ms ease-out;
 }
 
-.stream-volume-slider:hover,
-.stream-volume-slider:focus-within {
+.stream-mute-btn:hover .stream-volume-slider,
+.stream-mute-btn:focus-within .stream-volume-slider {
     width:auto;
     transform: scaleX(1);
 }

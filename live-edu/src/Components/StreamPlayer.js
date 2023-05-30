@@ -45,14 +45,17 @@ const StreamPlayer = () => {
     player.current.load(
       "https://a30460b2864f.eu-central-1.playback.live-video.net/api/video/v1/eu-central-1.279688390394.channel.arnU22p4Umes.m3u8"
     );
-    player.current.play()
 
-    console.log(player)
 
     player.current.addEventListener(READY, onStateChange);
     player.current.addEventListener(PLAYING, onStateChange);
     player.current.addEventListener(ENDED, onStateChange);
     player.current.addEventListener(ERROR, onError);
+
+    player.current.play()
+
+    console.log(player)
+    setPaused(false)
 
     return () => {
       player.current.removeEventListener(READY, onStateChange);
@@ -104,9 +107,9 @@ const StreamPlayer = () => {
           </div>
           <div className="stream-volume-controls" onClick={handleMute}>
             {muted ? (
-                <VolumeOff className="stream-mute-btn"/>
+              <VolumeOff className="stream-mute-btn" />
             ) : (
-                <VolumeHigh className="stream-mute-btn"/>
+              <VolumeHigh className="stream-mute-btn" />
             )}
             <input className="stream-volume-slider" type="range" min={0} max={1} step={0.01} value={0.5}></input>
           </div>
