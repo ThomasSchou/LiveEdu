@@ -19,6 +19,7 @@ const StreamPlayer = () => {
   const videoEl = useRef(null);
 
   const [loading, setLoading] = useState(true)
+  const [paused, setPaused] = useState(true)
 
   useEffect(() => {
     const { ENDED, PLAYING, READY } = IVSPlayer.PlayerState;
@@ -36,10 +37,8 @@ const StreamPlayer = () => {
       const playerState = player.current.getState();
 
       console.log(`Player State - ${playerState}`);
-      console.log(player.current.getBufferDuration())
-      if (loading !== (playerState !== PLAYING)) {
-        setLoading(playerState !== PLAYING);
-      }
+      setLoading(playerState !== PLAYING);
+      setPaused(player.isPaused());
     };
 
     const onError = (err) => {
@@ -92,8 +91,15 @@ const StreamPlayer = () => {
       {!loading && <div className="stream-Controls">
         <div className="stream-controls-left">
           <div className="stream-play-pause-btn">
-            {player.current.isPaused() && <div onClick={handlePlay} className="stream-controls-btn"> <Play /> </div>}
-            {!player.current.isPaused() && <div onClick={handlePause} className="stream-controls-btn"> <Pause /> </div>}
+            {paused ? (
+              <div onClick={handlePlay} className="stream-controls-btn">
+                <Play />
+              </div>
+            ) : (
+              <div onClick={handlePause} className="stream-controls-btn">
+                <Pause />
+              </div>
+            )}
           </div>
           <div className="stream-volume"></div>
         </div>
