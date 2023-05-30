@@ -29,7 +29,8 @@
 
 
 .stream-controls-left {
-    float: left
+    float: left;
+    display:flex;
 }
 
 .stream-controls-btn {
