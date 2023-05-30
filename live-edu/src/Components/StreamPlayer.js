@@ -82,7 +82,6 @@ const StreamPlayer = () => {
 
   const handleMute = () => {
     console.log("Muting")
-    console.log(player.current.isMuted())
     const currentlMuteState = !player.current.isMuted()
     player.current.setMuted(currentlMuteState)
     setMuted(currentlMuteState)
@@ -93,9 +92,10 @@ const StreamPlayer = () => {
       player.current.setMuted(false)
       console.log("forcing unmute")
     }
-    console.log(typeof parseFloat(e.target.value))
-    player.current.setVolume(parseFloat(e.target.value))
-    console.log(player.current.getVolume())
+
+    let targetVol = parseFloat(e.target.value)
+    player.current.setVolume(targetVol)
+    setVolume(targetVol)
   }
 
   if (!IVSPlayer.isPlayerSupported || !player) {
@@ -103,6 +103,7 @@ const StreamPlayer = () => {
   }
 
   console.log(player)
+  console.log("muted: " + muted)
   return (
     <div className="stream-container">
       {!loading && <div className="stream-Controls">
