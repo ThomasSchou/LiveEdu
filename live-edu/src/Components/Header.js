@@ -1,6 +1,29 @@
 import { NavLink } from 'react-router-dom';
+import { signInWithPopup, signOut } from "firebase/auth";
+import { auth, googleProvider } from '../Services/Firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Header() {
+
+  const [user] = useAuthState(auth);
+
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (err) {
+      console.error(err)
+    }
+    
+  }
+
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error(err)
+    }
+
+  }
 
   return (
     <div>
@@ -18,6 +41,10 @@ function Header() {
           </ul>
           <ul className='linkLoginContainer'>
             <div class="container nav-container">
+              {!user && (<div className='header-admin' onClick={signInWithGoogle}>login</div>)
+              ||
+              (<><div className='header-admin' onClick={logOut}>Log out</div>
+              <div className='header-admin'>{user.displayName}</div></>)}
             </div>
           </ul>
         </header>
