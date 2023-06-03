@@ -45,13 +45,17 @@ a {
   cursor: pointer;
 }
 
+body {
+  background-color: rgb(44, 44, 44);
+}
+
 /* Header */
 
 .header {
   backdrop-filter: blur(3px);
   height: 51px;
   transition: 0.3s ease-out;
-  background-color: rgb(8, 6, 14);
+  background-color: rgb(27, 27, 27);
   display: grid;
   grid-template-columns: min-content max-content min-content;
   grid-template-rows: 51px;

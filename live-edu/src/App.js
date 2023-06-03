@@ -3,6 +3,8 @@ import Header from './Components/Header';
 import Home from './Components/Home'
 import './App.css';
 import { Component } from 'react';
+import AllChannels from './Components/Discover';
+import Discover from './Components/Discover';
 
 
 class App extends Component {
@@ -17,6 +19,7 @@ class App extends Component {
             <Routes>
               <Route index element={<Home />} />
               <Route path='/liveedu' element={<Home />} />
+              <Route path='/discover' element={<Discover />} />
 
             </Routes>
           </div>
