@@ -1,18 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -46,6 +31,7 @@ a {
 }
 
 body {
+  color: white;
   background-color: rgb(44, 44, 44);
 }
 
@@ -81,6 +67,16 @@ body {
 }
 .headerLinks.active {
   font-weight: bold;
+}
+
+.nav-container {
+  display: flex;
+  margin-right: 1rem;
+  gap: 10px
+}
+
+.header-admin {
+  cursor: pointer;
 }
 
 /* Home */
