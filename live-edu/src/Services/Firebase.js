@@ -1,11 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { Firestore, getFirestore } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider } from "firebase/auth"
+import { getFirestore } from 'firebase/firestore';
+
+
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
+  
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
@@ -19,8 +22,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 //Export Firestore
-export const firestore = getFirestore(app)
+export const database = getFirestore(app)
 
 //Export Authentication
 export const auth = getAuth(app)
 export const googleProvider = new GoogleAuthProvider();
+
