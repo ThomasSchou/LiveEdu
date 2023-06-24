@@ -1,0 +1,132 @@
+.admin-container {
+    display: flex;
+}
+
+.admin-stream-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 1rem;
+    border: black 1px solid;
+    background: #1c1c1c;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.admin-stream-form-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.admin-stream-form-label, .admin-stream-form-input, .admin-stream-form-submit {
+    border-radius: 5px;
+}
+
+.admin-stream-form-input {
+    margin-bottom: 0.5rem;
+    min-height: 25px;
+}
+
+.admin-stream-form-label {
+    font-size: 0.7rem;
+}
+
+.admin-stream-form-submit {
+    padding: 10px;
+    background-color: rgb(2, 207, 207);
+    cursor: pointer;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: 200ms;
+    text-transform: uppercase;
+}
+
+.admin-stream-form-submit:hover {
+    background-color:transparent;
+    border: 2px solid rgb(2, 207, 207);
+    color: rgb(2, 207, 207);;
+}
+
+
+.admin-stream-current {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 1rem;
+    border: black 1px solid;
+    background: #1c1c1c;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.admin-stream-current-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.admin-stream-current-status {
+    padding: 1rem;
+    color: white;
+    padding: 2rem;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.admin-stream-current-status.active {
+    background-color: rgb(0, 128, 96);
+}
+
+.admin-stream-current-status.waiting {
+    background-color: rgb(128, 0, 38);
+}
+
+.admin-stream-current-status.live {
+    background-color: rgb(0, 128, 17);
+}
+
+.admin-stream-current-status.noPlan {
+    background-color: rgb(41, 41, 41);
+}
+
+.admin-stream-current-explain {
+    text-align: center;
+    font-size: 0.7rem;
+    color: rgb(190, 190, 190)
+}
+
+.admin-stream-current-golive {
+    padding: 10px;
+    background-color: rgb(61, 61, 61);
+    
+    color: rgb(112, 112, 112);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: 200ms;
+    border-radius: 5px;
+    margin-top: 1rem;
+    text-transform: uppercase;
+}
+
+.admin-stream-current-golive.ready {
+
+    background-color: rgb(2, 207, 207);
+    cursor: pointer;
+    color: white;
+    font-weight: 500;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.admin-stream-current-golive.ready:hover {
+    background-color:transparent;
+    border: 2px solid rgb(2, 207, 207);
+    color: rgb(2, 207, 207);;
+}
+
+

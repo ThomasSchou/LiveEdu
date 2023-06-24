@@ -9,8 +9,6 @@ AWS.config.update({
     secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
 });
 
-console.log(process.env.REACT_APP_AWS_SECRET_ACCESS_KEY)
-
 const ivs = new IVS();
 
 export const getChannels = async () => {
@@ -59,3 +57,59 @@ export const getStreams = async () => {
         throw error;
     }
 };
+
+export const createChannel = async (channelName) => {
+    try {
+      // Check if channel with the same name already exists
+      const existingChannel = await getChannelByName(channelName);
+      if (existingChannel) {
+        throw new Error('Channel with the same name already exists');
+      }
+  
+      const params = {
+        latencyMode: 'NORMAL', // Set the latency mode according to your requirements
+        name: channelName.replace(/\s/g, '-').toLowerCase(), // Use the provided channel name
+        type: "BASIC"
+      };
+  
+      const response = await ivs.createChannel(params).promise();
+      return response; // Return the ARN of the created channel
+    } catch (error) {
+      console.error('Error creating channel:', error);
+      throw error;
+    }
+  };
+  
+  // Helper function to get a channel by name
+  const getChannelByName = async (channelName) => {
+    try {
+
+      const params = {
+        filterByName: channelName.replace(/\s/g, '-').toLowerCase(),
+      };
+  
+      const response = await ivs.listChannels(params).promise();
+      if (response.channels.length > 0) {
+        return response.channels[0];
+      }
+  
+      return null;
+    } catch (error) {
+      console.error('Error retrieving channel:', error);
+      throw error;
+    }
+  };
+
+  export const isStreamActive = async (streamArn) => {
+    try {
+      const params = {
+        arn: streamArn,
+      };
+      console.log("test")
+      const response = await ivs.getStream(params).promise();
+      return response.stream.state === 'ACTIVE';
+    } catch (error) {
+      console.error('Error retrieving stream:', error);
+      throw error;
+    }
+  };

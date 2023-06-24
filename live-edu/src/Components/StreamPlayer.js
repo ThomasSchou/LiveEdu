@@ -2,13 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import { Play, Pause, VolumeOff, VolumeHigh } from '../Assets'
 
 import "../Styles/player.css";
+import Quiz from "./Quiz";
 
 
 
 
-const StreamPlayer = () => {
+const StreamPlayer = ({playback}) => {
   const { IVSPlayer } = window;
-
+  console.log(playback)
   let player = useRef(null)
   const videoEl = useRef(null);
 
@@ -43,7 +44,7 @@ const StreamPlayer = () => {
     player.current = IVSPlayer.create();
     player.current.attachHTMLVideoElement(videoEl.current);
     player.current.load(
-      "https://a30460b2864f.eu-central-1.playback.live-video.net/api/video/v1/eu-central-1.279688390394.channel.arnU22p4Umes.m3u8"
+      playback
     );
 
 
@@ -107,7 +108,8 @@ const StreamPlayer = () => {
   console.log("muted: " + muted)
   return (
     <div className="stream-container">
-      {!loading && <div className="stream-Controls">
+      <Quiz/>
+      {<div className="stream-Controls">
         <div className="stream-controls-left">
           <div className="stream-play-pause-btn">
             {paused ? (
@@ -130,6 +132,7 @@ const StreamPlayer = () => {
           </div>
         </div>
       </div>}
+      
       <video id="stream-player" className="vjs-default-skin" ref={videoEl}></video>
     </div>
   );

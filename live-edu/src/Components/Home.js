@@ -1,3 +1,4 @@
+import Chat from "./Chat";
 import StreamPlayer from "./StreamPlayer";
 
 function Home() {
@@ -5,7 +6,7 @@ function Home() {
   return (
     <div className="container">
       <StreamPlayer/>
-      <div className="chat"></div>
+      <Chat></Chat>
     </div>
   );
 }

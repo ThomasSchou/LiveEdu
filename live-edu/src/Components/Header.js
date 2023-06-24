@@ -1,7 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { signInWithPopup, signOut } from "firebase/auth";
-import { auth, googleProvider } from '../Services/Firebase';
+import { auth, database, googleProvider } from '../Services/Firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { createChannel } from '../Services/IVSApi';
+import { doc, setDoc } from 'firebase/firestore';
 
 function Header() {
 
@@ -9,11 +11,26 @@ function Header() {
 
   const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const credentials = await signInWithPopup(auth, googleProvider);
+      console.log(credentials.user.displayName)
+      var channel = await createChannel(credentials.user.displayName)
+
+      console.log(channel)
+
+      if (channel) {
+        await setDoc(doc(database, "Users", credentials.user.displayName), {
+          userId: credentials.user.uid,
+          slug: credentials.user.displayName.replace(/\s/g, "-").toLowerCase(),
+          playback: channel.channel.playbackUrl,
+          channelArn: channel.channel.arn,
+          streamKey: channel.streamKey.value
+        });
+      }
+
     } catch (err) {
       console.error(err)
     }
-    
+
   }
 
   const logOut = async () => {
@@ -28,7 +45,7 @@ function Header() {
   return (
     <div>
       <div className='headerFiller'></div>
-      
+
       <div className='headerContainer'>
 
         <header className='header' id='header'>
@@ -41,10 +58,12 @@ function Header() {
           </ul>
           <ul className='linkLoginContainer'>
             <div class="container nav-container">
-              {!user && (<div className='header-admin' onClick={signInWithGoogle}>login</div>)
-              ||
-              (<><div className='header-admin' onClick={logOut}>Log out</div>
-              <div className='header-admin'>{user.displayName}</div></>)}
+              {!user &&
+                (<div className='header-admin' onClick={signInWithGoogle}>login</div>)
+                ||
+                (<><div className='header-admin' onClick={logOut}>Log out</div>
+                  <li><NavLink to={'/admin'} className="headerLinks">{user.displayName}</NavLink></li></>
+                )}
             </div>
           </ul>
         </header>
