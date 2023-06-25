@@ -4,18 +4,8 @@ import { collection, doc, getDocs, limit, orderBy, query, setDoc, where } from "
 import { auth, database } from "../Services/Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { isStreamActive } from "../Services/IVSApi";
+import { generateRandomString } from "../Helpers/generate";
 
-function generateRandomString(length) {
-  let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  const charactersLength = characters.length;
-
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-
-  return result;
-}
 
 
 function Admin() {
@@ -108,8 +98,10 @@ function Admin() {
     // Perform form submission logic using the formData state
     console.log(formData);
     console.log()
+    const streamId = generateRandomString(10)
     // Add a new document in collection "cities"
-    await setDoc(doc(database, "Streams", generateRandomString(10)), {
+    await setDoc(doc(database, "Streams", streamId), {
+      streamId: streamId,
       name: formData.name,
       userId: user.uid,
       slug: userData.slug,
@@ -119,6 +111,10 @@ function Admin() {
       expectedLive: formData.expectedLive,
       status: "upcoming",
       playback: userData.playback
+    });
+
+    await setDoc(doc(database, "Chat", streamId), {
+
     });
 
     // Reset the form after submission

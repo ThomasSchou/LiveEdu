@@ -26,9 +26,6 @@ function Discover() {
                 }
             })
 
-            await getStreams().then(res =>
-                console.log(res)
-            )
             setLiveChannels(live)
             setUpcomingChannels(upcoming)
         };
