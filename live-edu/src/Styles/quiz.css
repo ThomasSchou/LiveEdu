@@ -67,4 +67,10 @@
     color:white;
     background-color: teal;
     border-radius: 10px;
+    transition: 150ms ease-in-out;
+    cursor: pointer;
+}
+
+.quiz-question-answers-item:hover {
+    transform: scale(1.1);
 }
