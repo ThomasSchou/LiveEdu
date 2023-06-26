@@ -7,7 +7,7 @@ import Quiz from "./Quiz";
 
 
 
-const StreamPlayer = ({playback}) => {
+const StreamPlayer = ({playback, status, streamId}) => {
   const { IVSPlayer } = window;
   console.log(playback)
   let player = useRef(null)
@@ -29,6 +29,7 @@ const StreamPlayer = ({playback}) => {
 
       return;
     }
+
 
     const onStateChange = () => {
       const playerState = player.current.getState();
@@ -108,7 +109,7 @@ const StreamPlayer = ({playback}) => {
   console.log("muted: " + muted)
   return (
     <div className="stream-container">
-      <Quiz/>
+      <Quiz streamId={streamId}/>
       {<div className="stream-Controls">
         <div className="stream-controls-left">
           <div className="stream-play-pause-btn">
