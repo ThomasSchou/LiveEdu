@@ -33,11 +33,13 @@ function Live() {
                     if (doc.data()) {
                         let docDate = new Date(doc.data().expectedLive)
                         let difference = Math.abs(docDate.getTime() - currentDate.getTime())
-                        if (difference < closestDifference)
+                        if (difference < closestDifference || !closestDifference) {
                             closestDifference = difference
-                        tempCurrentStream = doc.data()
+                            tempCurrentStream = doc.data()
+                        }
                     }
                 })
+                console.log(tempCurrentStream)
                 setStream(tempCurrentStream)
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -53,7 +55,7 @@ function Live() {
 
     return (
         <div className="container">
-            <StreamPlayer playback={stream.playback} status={stream.status} />
+            <StreamPlayer playback={stream.playback} status={stream.status} streamId={stream.streamId} />
             <Chat streamId={stream.streamId} />
         </div>
     );
