@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "../Styles/chat.css";
 import { auth, database } from "../Services/Firebase";
-import { Firestore, addDoc, collection, doc, onSnapshot, query, setDoc, updateDoc } from "firebase/firestore";
-import { useCollection, useDocument } from "react-firebase-hooks/firestore";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+
 import { generateRandomString } from "../Helpers/generate";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -22,8 +22,6 @@ function Chat({ streamId }) {
 
       const unsub = onSnapshot(doc(database, "Chat", streamId), (doc) => {
 
-        const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-        console.log(source, " data: ", doc.data());
         let tempData
         setData(doc.data())
       });
