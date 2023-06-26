@@ -53,8 +53,8 @@ function Header() {
             <NavLink to={'/'}><img className='logo'></img></NavLink>
           </div>
           <ul className='linkContainer'>
-            <li><NavLink to={'/follows'} className="headerLinks">FØLGER</NavLink></li>
-            <li><NavLink to={'/discover'} className="headerLinks">TIL DIG</NavLink></li>
+            <li><NavLink to={'/tags'} className="headerLinks">FOR YOU</NavLink></li>
+            <li><NavLink to={'/discover'} className="headerLinks">NEW</NavLink></li>
           </ul>
           <ul className='linkLoginContainer'>
             <div class="container nav-container">
@@ -62,7 +62,7 @@ function Header() {
                 (<div className='header-admin' onClick={signInWithGoogle}>login</div>)
                 ||
                 (<><div className='header-admin' onClick={logOut}>Log out</div>
-                  <li><NavLink to={'/admin'} className="headerLinks">{user.displayName}</NavLink></li></>
+                  <li><NavLink to={'/admin'} className="headerLinks">Profil</NavLink></li></>
                 )}
             </div>
           </ul>
