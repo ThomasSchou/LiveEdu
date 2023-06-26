@@ -1,11 +1,11 @@
 .admin-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .admin-stream-form {
     display: flex;
     flex-direction: column;
-    width: 50%;
     margin: 1rem;
     border: black 1px solid;
     background: #1c1c1c;
@@ -19,7 +19,9 @@
     margin-bottom: 1rem;
 }
 
-.admin-stream-form-label, .admin-stream-form-input, .admin-stream-form-submit {
+.admin-stream-form-label,
+.admin-stream-form-input,
+.admin-stream-form-submit {
     border-radius: 5px;
 }
 
@@ -44,16 +46,16 @@
 }
 
 .admin-stream-form-submit:hover {
-    background-color:transparent;
+    background-color: transparent;
     border: 2px solid rgb(2, 207, 207);
-    color: rgb(2, 207, 207);;
+    color: rgb(2, 207, 207);
+    ;
 }
 
 
 .admin-stream-current {
     display: flex;
     flex-direction: column;
-    width: 50%;
     margin: 1rem;
     border: black 1px solid;
     background: #1c1c1c;
@@ -103,7 +105,7 @@
 .admin-stream-current-golive {
     padding: 10px;
     background-color: rgb(61, 61, 61);
-    
+
     color: rgb(112, 112, 112);
     font-size: 1.1rem;
     font-weight: 500;
@@ -124,9 +126,29 @@
 }
 
 .admin-stream-current-golive.ready:hover {
-    background-color:transparent;
+    background-color: transparent;
     border: 2px solid rgb(2, 207, 207);
-    color: rgb(2, 207, 207);;
+    color: rgb(2, 207, 207);
+
 }
 
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
 
+.quiz-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz-result-item {
+    display: flex;
+    gap: 5px
+}
+
+.quiz-result-user {
+    font-weight: bold;
+    
+}
