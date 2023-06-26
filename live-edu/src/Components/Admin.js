@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/admin.css";
-import { collection, doc, getDocs, limit, orderBy, query, setDoc, where } from "firebase/firestore";
+import { collection, doc, getDocs, limit, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { auth, database } from "../Services/Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { isStreamActive } from "../Services/IVSApi";
@@ -14,11 +14,19 @@ function Admin() {
 
   const [currentStream, setCurrentStream] = useState(null)
   const [userData, setuserData] = useState(null)
+  const [quiz, setQuiz] = useState(null)
   const [formData, setFormData] = useState({
     name: "",
     price: "",
     tags: "",
     expectedLive: ""
+  });
+  const [quizData, setQuizData] = useState({
+    name: "",
+    answer01: "",
+    answer02: "",
+    answer03: "",
+    answer04: ""
   });
 
 
@@ -52,6 +60,8 @@ function Admin() {
     fetchData();
   }, [user]);
 
+
+
   useEffect(() => {
     if (!user) return
 
@@ -71,10 +81,13 @@ function Admin() {
       streamSnapshot.forEach((doc) => {
         if (doc.data()) {
           let docDate = new Date(doc.data().expectedLive)
+          console.log(docDate.getTime() + doc.data().name)
           let difference = Math.abs(docDate.getTime() - currentDate.getTime())
-          if (difference < closestDifference)
+          console.log(difference)
+          if (difference < closestDifference || !closestDifference) {
             closestDifference = difference
-          tempCurrentStream = doc.data()
+            tempCurrentStream = doc.data()
+          }
         }
       })
 
@@ -84,6 +97,33 @@ function Admin() {
 
     fetchData();
   }, [user]);
+
+  useEffect(() => {
+    if (!currentStream) return
+
+    const fetchData = async () => {
+      const quizQuery = query(
+        collection(database, "Quiz"),
+        where("streamId", "==", currentStream.streamId),
+
+      );
+
+      const quizSnapshot = await getDocs(quizQuery);
+
+      let tempQuiz
+
+      quizSnapshot.forEach((doc) => {
+        if (doc.data()) {
+          tempQuiz = doc.data()
+        }
+      })
+
+      console.log(tempQuiz)
+      setQuiz(tempQuiz)
+    };
+
+    fetchData();
+  }, [currentStream]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -95,11 +135,13 @@ function Admin() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Perform form submission logic using the formData state
+
     console.log(formData);
     console.log()
+
+    const trimmedTags = formData.tags.replace(/\s/g, '').toLowerCase().split(',')
     const streamId = generateRandomString(10)
-    // Add a new document in collection "cities"
+
     await setDoc(doc(database, "Streams", streamId), {
       streamId: streamId,
       name: formData.name,
@@ -107,7 +149,7 @@ function Admin() {
       slug: userData.slug,
       userDisplayName: user.displayName,
       price: formData.price,
-      tags: formData.tags,
+      tags: trimmedTags,
       expectedLive: formData.expectedLive,
       status: "upcoming",
       playback: userData.playback
@@ -132,6 +174,130 @@ function Admin() {
     return isActive
   }
 
+  const handleQuizInputChange = (event) => {
+    const { name, value } = event.target;
+    setQuizData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const submitQuiz = async () => {
+    await setDoc(doc(database, "Quiz", currentStream.streamId), {
+      streamId: currentStream.streamId,
+      name: quizData.name,
+      answer01: quizData.answer01,
+      answer02: quizData.answer02,
+      answer03: quizData.answer03,
+      answer04: quizData.answer04,
+    });
+
+    setQuizData({
+      name: "",
+      answer01: "",
+      answer02: "",
+      answer03: "",
+      answer04: ""
+    })
+  };
+
+  const generateQuiz = () => {
+    if (!quiz) { return }
+
+    const filteredObjects = Object.entries(quiz)
+      .filter(([key, value]) => typeof value === 'object')
+      .reduce((obj, [key, value]) => {
+        obj[key] = value;
+        return obj;
+      }, {});
+    console.log(filteredObjects)
+    if (currentStream?.status === "upcoming") {
+      return <div className="admin-stream-current">
+        <div className="admin-stream-current-title">Quiz</div>
+        <label className="admin-stream-form-label">Question</label>
+        <input
+          type="text"
+          name="name"
+          value={quizData.name}
+          onChange={handleQuizInputChange}
+          className="admin-stream-form-input"
+        />
+        <div className="quiz-grid">
+          <div className="quiz-item">
+            <label className="admin-stream-form-label">Answer 1</label>
+            <input
+              type="text"
+              name="answer01"
+              value={quizData.answer01}
+              onChange={handleQuizInputChange}
+              className="admin-stream-form-input"
+            />
+          </div>
+          <div className="quiz-item">
+            <label className="admin-stream-form-label">Answer 2</label>
+            <input
+              type="text"
+              name="answer02"
+              value={quizData.answer02}
+              onChange={handleQuizInputChange}
+              className="admin-stream-form-input"
+            />
+          </div>
+          <div className="quiz-item">
+            <label className="admin-stream-form-label">Answer 3</label>
+            <input
+              type="text"
+              name="answer03"
+              value={quizData.answer03}
+              onChange={handleQuizInputChange}
+              className="admin-stream-form-input"
+            />
+          </div>
+          <div className="quiz-item">
+            <label className="admin-stream-form-label">Answer 4</label>
+            <input
+              type="text"
+              name="answer04"
+              value={quizData.answer04}
+              onChange={handleQuizInputChange}
+              className="admin-stream-form-input"
+            />
+          </div>
+        </div>
+        {!quiz &&
+          < button onClick={submitQuiz} className="admin-stream-form-submit">
+            Create Quiz
+          </button>
+          ||
+          <>< button onClick={submitQuiz} className="admin-stream-form-submit">
+            Replace Quiz
+          </button>
+            <div className="quiz-result">
+              {Object.entries(filteredObjects).map(([key, value]) => {
+                console.log(value); // Updated from `item` to `value`
+                return (
+                  <div className="quiz-result-item">
+                    <div className="quiz-result-user">{key}</div> 
+                    <div className="quiz-result-answer">{value.answer}</div>
+                  </div>
+                );
+              })
+}
+            </div>
+          </>
+        }
+      </div >
+    }
+
+  }
+
+  const goLive = async () => {
+    await updateDoc(doc(database, "Streams", currentStream.streamId), {
+      status: "live"
+    });
+
+  }
+
   const getStreamStatus = () => {
 
     var streamState
@@ -153,7 +319,7 @@ function Admin() {
         return <>
           <div className={"admin-stream-current-status active"}>Ready</div>
           <div className="admin-stream-current-explain">Ready to go live!</div>
-          <button className="admin-stream-current-golive ready">Go live</button>
+          <button onClick={goLive()} className="admin-stream-current-golive ready">Go live</button>
         </>
 
       case "waiting":
@@ -244,6 +410,7 @@ function Admin() {
           <b>Stream Key: </b>{userData.streamKey}
           <b>Ingest Server: </b> rtmps://a30460b2864f.global-contribute.live-video.net:443/app/
         </div>
+        {generateQuiz()}
       </div>
     </div>
   );
