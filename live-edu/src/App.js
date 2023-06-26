@@ -6,6 +6,7 @@ import { Component } from 'react';
 import Discover from './Components/Discover';
 import Admin from './Components/Admin';
 import Live from './Components/Live';
+import DiscoverTags from './Components/DiscoverTags';
 
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
               <Route path='/discover' element={<Discover />} />
               <Route path='/admin' element={<Admin />} />
               <Route path="/live/:slug" element={<Live /> } />
+              <Route path="/tags" element={<DiscoverTags /> } />
 
             </Routes>
           </div>
