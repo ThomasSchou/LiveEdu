@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Play, Pause, VolumeOff, VolumeHigh } from '../Assets'
+import { Play, Pause, VolumeOff, VolumeHigh, Fullscreen } from '../Assets'
 
 import "../Styles/player.css";
 import Quiz from "./Quiz";
@@ -7,7 +7,7 @@ import Quiz from "./Quiz";
 
 
 
-const StreamPlayer = ({playback, status, streamId}) => {
+const StreamPlayer = ({ playback, status, streamId }) => {
   const { IVSPlayer } = window;
   console.log(playback)
   let player = useRef(null)
@@ -17,6 +17,7 @@ const StreamPlayer = ({playback, status, streamId}) => {
   const [paused, setPaused] = useState(true)
   const [volume, setVolume] = useState(0.5)
   const [muted, setMuted] = useState(true)
+  const [fullscreen, setFullscreen] = useState(false)
 
   useEffect(() => {
     const { ENDED, PLAYING, READY } = IVSPlayer.PlayerState;
@@ -53,7 +54,6 @@ const StreamPlayer = ({playback, status, streamId}) => {
     player.current.addEventListener(PLAYING, onStateChange);
     player.current.addEventListener(ENDED, onStateChange);
     player.current.addEventListener(ERROR, onError);
-
     player.current.setVolume(volume)
     player.current.play()
 
@@ -65,6 +65,7 @@ const StreamPlayer = ({playback, status, streamId}) => {
       player.current.removeEventListener(PLAYING, onStateChange);
       player.current.removeEventListener(ENDED, onStateChange);
       player.current.removeEventListener(ERROR, onError);
+
     };
   }, []);
 
@@ -90,7 +91,7 @@ const StreamPlayer = ({playback, status, streamId}) => {
   }
 
   const handleVolumeChange = (e) => {
-    if(player.current.isMuted()) {
+    if (player.current.isMuted()) {
       player.current.setMuted(false)
       setMuted(false)
       console.log("forcing unmute")
@@ -101,6 +102,18 @@ const StreamPlayer = ({playback, status, streamId}) => {
     setVolume(targetVol)
   }
 
+  const handleFullscreen = () => {
+
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+
+    setFullscreen(!fullscreen);
+  };
+
+
   if (!IVSPlayer.isPlayerSupported || !player) {
     return "null";
   }
@@ -108,8 +121,8 @@ const StreamPlayer = ({playback, status, streamId}) => {
   console.log(player)
   console.log("muted: " + muted)
   return (
-    <div className="stream-container">
-      <Quiz streamId={streamId}/>
+    <div className={"stream-container" + (fullscreen ? " fullscreen" : "")}>
+      <Quiz streamId={streamId} />
       {<div className="stream-Controls">
         <div className="stream-controls-left">
           <div className="stream-play-pause-btn">
@@ -130,10 +143,15 @@ const StreamPlayer = ({playback, status, streamId}) => {
               <VolumeHigh onClick={handleMute} className="stream-mute-btn" />
             )}
             <input className="stream-volume-slider" type="range" min={0} max={1} step={0.01} defaultValue={volume} onChange={handleVolumeChange}></input>
+
           </div>
+
+        </div>
+        <div className="stream-controls-right">
+          <Fullscreen onClick={handleFullscreen} className="stream-fullscreen-btn" />
         </div>
       </div>}
-      
+
       <video id="stream-player" className="vjs-default-skin" ref={videoEl}></video>
     </div>
   );
