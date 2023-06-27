@@ -54,7 +54,7 @@ function Header() {
           </div>
           <ul className='linkContainer'>
             <li><NavLink to={'/tags'} className="headerLinks">FOR YOU</NavLink></li>
-            <li><NavLink to={'/discover'} className="headerLinks">NEW</NavLink></li>
+            <li><NavLink to={'/discover'} className="headerLinks">DISCOVER</NavLink></li>
           </ul>
           <ul className='linkLoginContainer'>
             <div class="container nav-container">
