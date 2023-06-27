@@ -13,43 +13,61 @@ function DiscoverTags() {
 
     const [liveChannels, setLiveChannels] = useState(null)
     const [upcomingChannels, setUpcomingChannels] = useState(null)
+    const [tags, setTags] = useState(null)
 
-    
+
 
     useEffect(() => {
         const fetchData = async () => {
-            if(!user){return}
+            if (!user) {
+                return;
+            }
             const userQuery = query(collection(database, "Users"), where("userId", "==", user.uid));
-
             const userSnapshot = await getDocs(userQuery);
 
-            let tags            
+            let tempTags;
             userSnapshot.forEach((doc) => {
                 if (doc.data().tags) {
-                    tags = doc.data().tags
+                    tempTags = doc.data().tags;
                 }
-            })
-            console.log(tags)
-
-            const streamQuery = query(collection(database, "Streams"), where("tags", "array-contains-any", tags));
-            const streamSnapshot = await getDocs(streamQuery);
-
-            let live = []
-            let upcoming = []
-
-            streamSnapshot.forEach((doc) => {
-                if (doc.data()) {
-                    if (doc.data().status === "live") { live.push(doc.data()) }
-                    if (doc.data().status === "upcoming") { upcoming.push(doc.data()) }
-                }
-            })
-
-            setLiveChannels(live)
-            setUpcomingChannels(upcoming)
+            });
+            console.log(tags);
+            setTags(tempTags);
         };
 
         fetchData();
     }, [user]);
+
+    useEffect(() => {
+        if (!tags) {
+            return;
+        }
+
+        const fetchStreams = async () => {
+            const streamQuery = query(collection(database, "Streams"), where("tags", "array-contains-any", tags));
+            const streamSnapshot = await getDocs(streamQuery);
+
+            let live = [];
+            let upcoming = [];
+
+            streamSnapshot.forEach((doc) => {
+                if (doc.data()) {
+                    if (doc.data().status === "live") {
+                        live.push(doc.data());
+                    }
+                    if (doc.data().status === "upcoming") {
+                        upcoming.push(doc.data());
+                    }
+                }
+            });
+
+            setLiveChannels(live);
+            setUpcomingChannels(upcoming);
+        };
+
+        fetchStreams();
+    }, [tags]);
+
 
     if (!liveChannels || !upcomingChannels) { return <>nada</> }
 
@@ -64,6 +82,9 @@ function DiscoverTags() {
                             <div className="discover-item-name">{item.name}</div>
                             <div className="discover-item-viewers">{item.viewers}</div>
                             <div className="discover-item-price">{item.price}</div>
+                            {item.tags.map((tag) => {
+                                return <div className="discover-item-tag">{tag}</div>
+                            })}
                         </div>
                     </div>
                 </Link>
@@ -84,6 +105,11 @@ function DiscoverTags() {
                             <div className="discover-item-name">{item.name}</div>
                             <div className="discover-item-viewers">{item.viewers}</div>
                             <div className="discover-item-price">{item.price}</div>
+                            <div className="discover-item-tags">
+                                {item.tags.map((tag) => {
+                                    return <div className="discover-item-tag">{tag}</div>
+                                })}
+                            </div>
                         </div>
                     </div>
                 </Link>
@@ -93,6 +119,18 @@ function DiscoverTags() {
 
     return (
         <div className="discover-container">
+            <div className="discover-title">Your tags</div>
+            {tags ? (
+                <div className="discover-tags">
+                    {tags.map((tag, index) => (
+                        <div className="discover-tag" key={index}>
+                            {tag}
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div>No tags found.</div>
+            )}
             <div className="discover-title">LIVE</div>
             <div className="discover-grid">
                 {generateLiveItems()}
