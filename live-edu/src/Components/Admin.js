@@ -202,15 +202,6 @@ function Admin() {
   };
 
   const generateQuiz = () => {
-    if (!quiz) { return }
-
-    const filteredObjects = Object.entries(quiz)
-      .filter(([key, value]) => typeof value === 'object')
-      .reduce((obj, [key, value]) => {
-        obj[key] = value;
-        return obj;
-      }, {});
-    console.log(filteredObjects)
     if (currentStream?.status === "upcoming") {
       return <div className="admin-stream-current">
         <div className="admin-stream-current-title">Quiz</div>
@@ -264,30 +255,47 @@ function Admin() {
             />
           </div>
         </div>
-        {!quiz &&
-          < button onClick={submitQuiz} className="admin-stream-form-submit">
+        {!quiz ? (
+          <button onClick={submitQuiz} className="admin-stream-form-submit">
             Create Quiz
           </button>
-          ||
-          <>< button onClick={submitQuiz} className="admin-stream-form-submit">
-            Replace Quiz
-          </button>
-            <div className="quiz-result">
-              {Object.entries(filteredObjects).map(([key, value]) => {
-                console.log(value); // Updated from `item` to `value`
-                return (
-                  <div className="quiz-result-item">
-                    <div className="quiz-result-user">{key}</div> 
-                    <div className="quiz-result-answer">{value.answer}</div>
-                  </div>
-                );
-              })
-}
-            </div>
-          </>
-        }
+        ) : (
+          generateQuizData()
+        )}
       </div >
     }
+
+  }
+
+  const generateQuizData = () => {
+    if (!quiz) { return }
+
+    const filteredObjects = Object.entries(quiz)
+      .filter(([key, value]) => typeof value === 'object')
+      .reduce((obj, [key, value]) => {
+        obj[key] = value;
+        return obj;
+      }, {});
+      console.log(filteredObjects)
+    return (
+      
+      <>
+        < button onClick={submitQuiz} className="admin-stream-form-submit">
+          Replace Quiz
+        </button>
+        <div className="quiz-result">
+          {Object.entries(filteredObjects).map(([key, value]) => {
+            console.log(value); // Updated from `item` to `value`
+            return (
+              <div className="quiz-result-item">
+                <div className="quiz-result-user">{key}</div>
+                <div className="quiz-result-answer">{value.answer}</div>
+              </div>
+            );
+          })
+          }
+        </div>
+      </>)
 
   }
 
