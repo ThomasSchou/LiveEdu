@@ -3,6 +3,13 @@
     position: relative;
 }
 
+.stream-container.fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed;
+    top: 0px;
+}
+
 
 #stream-player {
     width: 100%;
@@ -31,15 +38,23 @@
 .stream-controls-left {
     float: left;
     display:flex;
+    margin-left: 10px
+}
+
+.stream-controls-right {
+    float: right;
+    display:flex;
+    margin-right: 10px;
 }
 
 .stream-controls-btn {
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     opacity: 0.85;
     transition: 200ms;
     fill:white;
     margin: 10px 10px;
+    cursor: pointer;
 }
 
 .stream-controls-btn:hover {
@@ -58,11 +73,12 @@
 
 
 .stream-mute-btn {
-    height: 25px;
-    width: 25px;
+    height: 22px;
+    width: 22px;
     transition: 200ms;
     fill:white;
     margin: 10px 10px;
+    cursor: pointer;
 }
 
 .stream-mute-btn:hover {
@@ -75,10 +91,26 @@
     transform: scaleX(0);
     width:0px;
     transition: 150ms ease-out;
+    cursor: pointer;
 }
 
 .stream-volume-controls:hover .stream-volume-slider,
 .stream-volume-controls:focus-within .stream-volume-slider {
     width:100px;
     transform: scaleX(1);
+}
+
+.stream-fullscreen-btn {
+    height: 17px;
+    width: 17px;
+    transition: 200ms;
+    fill:white;
+    margin: 10px 10px;
+    align-self: right;
+    opacity: 0.85;
+    cursor: pointer;
+}
+
+.stream-fullscreen-btn:hover {
+    opacity: 1;
 }

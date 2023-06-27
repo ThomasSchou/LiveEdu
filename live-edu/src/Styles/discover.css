@@ -6,6 +6,7 @@
 .discover-title {
     font-weight: 500;
     font-size: 1.7rem;
+    text-transform: uppercase;
 }
 
 .discover-grid {
@@ -59,5 +60,31 @@
   .discover-item-name {
     font-size: 1.5rem;
     font-weight: 500;
+
+  }
+
+  .discover-item-tags {
+    display: flex;
+    gap: 5px;
+  }
+
+  .discover-item-tag {
+    padding: 1px 5px;
+    background-color: rgb(26, 26, 26);
+    border-radius: 5px;
+
+  }
+
+  .discover-tags {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .discover-tag {
+    padding: 1px 5px;
+    background-color: rgb(26, 26, 26);
+    border-radius: 5px;
 
   }
